@@ -49,15 +49,30 @@ const removePlace = (placeName) => {
     </div>
 
     <!-- info -->
-    <div v-show="showDetail">
-      <WeatherInfo
-        :place="place"
-        @close-info="showDetail = false" @remove-place="removePlace(place.location.name)"
-      />
-    </div>
-    <!-- forecast btn -->
-    <div class="flex justify-end items-center gap-1 mt-10">
-      <button @click="showDetail = true">More</button>
-    </div>
+    <Transition name="fade">
+      <div v-show="showDetail">
+        <WeatherInfo
+          :place="place"
+          @close-info="showDetail = false" @remove-place="removePlace(place.location.name)"
+        />
+      </div>
+    </Transition>
+
+      <!-- forecast btn -->
+      <div class="flex justify-end items-center gap-1 mt-10">
+        <button @click="showDetail = true">More</button>
+      </div>
   </div>
 </template>
+
+<style scoped>
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.2s ease;
+}
+
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
+}
+</style>
