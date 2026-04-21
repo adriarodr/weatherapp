@@ -1,10 +1,21 @@
 <script setup>
+import { ref } from "vue";
 import BorderLine from '@/components/BorderLine.vue';
-import WeatherForecastDay from './WeatherForecastDay.vue';
+import WeatherForecastDay from '@/components/WeatherForecastDay.vue';
+import WeatherInfo from '@/components/WeatherInfo.vue';
 
 defineProps({
   place: Object
-})
+});
+
+const emit = defineEmits(['delete-place']);
+
+const showDetail = ref(false);
+
+const removePlace = (placeName) => {
+  emit("delete-place", placeName);
+  showDetail.value = false;
+};
 </script>
 
 <template>
@@ -38,12 +49,15 @@ defineProps({
     </div>
 
     <!-- info -->
-    <div>
-      <!-- Weather info component goes here -->
+    <div v-show="showDetail">
+      <WeatherInfo
+        :place="place"
+        @close-info="showDetail = false" @remove-place="removePlace(place.location.name)"
+      />
     </div>
     <!-- forecast btn -->
     <div class="flex justify-end items-center gap-1 mt-10">
-      <button>More</button>
+      <button @click="showDetail = true">More</button>
     </div>
   </div>
 </template>
