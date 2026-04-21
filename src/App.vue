@@ -1,5 +1,13 @@
 <script setup>
-import { RouterLink, RouterView } from 'vue-router'
+import { ref } from "vue";
+import SearchInput from "@/components/SearchInput.vue";
+// import { RouterLink, RouterView } from 'vue-router'
+
+const places = ref([]);
+
+const addPlace = (data) => {
+  places.value.push(data);
+}
 </script>
 
 <template>
@@ -12,6 +20,11 @@ import { RouterLink, RouterView } from 'vue-router'
         month: "long",
         day: "numeric"
       }) }}
+    </div>
+
+    <!-- Search -->
+    <div>
+      <SearchInput @place-data="addPlace" />
     </div>
   </main>
 </template>
