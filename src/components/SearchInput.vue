@@ -1,7 +1,11 @@
 <script setup>
 import { reactive } from 'vue';
+import { useRouter } from 'vue-router';
+
 import { fetchWeather, fetchAutoComplete } from '@/helper/weatherApi';
 import { store } from '@/store/store';
+
+const router = useRouter();
 
 const searchTerm = reactive({
   query: '',
@@ -31,6 +35,8 @@ const getWeather = async (id) => {
   // Clear the searchTerm
   searchTerm.query = "";
   searchTerm.results = null;
+
+  router.push({ name: "weather.today" });
 };
 </script>
 

@@ -41,7 +41,7 @@ a,
     font-size: 1.125rem;
   }
 
-  h1, current-date {
+  h1, h2, current-date {
     font-family: "Bitter", serif;
   }
 }
