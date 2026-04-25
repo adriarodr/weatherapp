@@ -1,60 +1,21 @@
 <script setup>
-defineProps({
-  place: Object
-});
+import { store } from '@/store/store';
+
 </script>
 
 <template>
-  <div
-    class="absolute bg-white/80 backdrop-blur-sm text-slate-900 inset-x-0 bottom-0 rounded-t-lg p-8"
-  >
-    <!-- Close button -->
-    <div class="flex justify-end mb-10">
-      <button @click="$emit('close-info')" class="p-1">
-        x
-      </button>
-    </div>
+  <div class="bg-black/70 text-white rounded-2xl p-5 w-5/5">
+    <p>Humidity</p>
+    <p>{{ store.weatherData.current.humidity }} %</p>
 
-    <div class="flex items-center justify-between gap-6 mb-20">
-      <!-- Wind speed -->
-      <div class="text-center flex-1">
-        <p class="text-xl font-bold">{{ place.current.wind_kph }} km/h</p>
-        <p>wind</p>
-      </div>
-      <!-- Humidity level -->
-      <div class="text-center flex-1">
-        <p class="text-xl font-bold">{{ place.current.humidity }}%</p>
-        <p>humidity</p>
-      </div>
-      <!-- Precipitation -->
-      <div class="text-center flex-1">
-        <p class="text-xl font-bold">{{ place.current.precip_mm }} mm</p>
-        <p>precipitation</p>
-      </div>
-    </div>
-    <div class="flex items-center justify-between gap-6 mb-10">
-      <!-- Wind direction -->
-      <div class="text-center flex-1">
-        <p class="text-xl font-bold">{{ place.current.wind_dir }}</p>
-        <p>direction</p>
-      </div>
-      <!-- Feels like -->
-      <div class="text-center flex-1">
-        <p class="text-xl font-bold">{{ Math.round(place.current.feelslike_c) }}&deg;</p>
-        <p>Feels</p>
-      </div>
-      <!-- UV -->
-      <div class="text-center flex-1">
-        <p class="text-xl font-bold">{{ place.current.uv }}</p>
-        <p>UV index</p>
-      </div>
-    </div>
-    <!-- Last update and delete -->
-    <div class="flex justify-between items-center">
-      <h3 class="text-slate-900/50">last update: {{ place.current.last_updated }}</h3>
-      <button @click="$emit('remove-place')">
-        //
-      </button>
-    </div>
+    <p>Wind</p>
+    <p>{{ store.weatherData.current.wind_kph }} kph {{ store.weatherData.current.dir }}</p>
+
+    <p>Pressure</p>
+    <p>{{ store.weatherData.current.pressure_mb }} mb</p>
+
+    <p>Precipitation</p>
+    <p>{{ store.weatherData.current.precip_mm }} mm</p>
+
   </div>
 </template>
