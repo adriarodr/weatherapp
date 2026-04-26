@@ -36,7 +36,7 @@ const getWeather = async (id) => {
   searchTerm.query = "";
   searchTerm.results = null;
 
-  router.push({ name: "weather.today" });
+  router.push({ name: "today" });
 };
 </script>
 

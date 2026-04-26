@@ -39,6 +39,7 @@ a,
   body {
     font-family: "Roboto", sans-serif;
     font-size: 1.125rem;
+    background-color: rgb(71, 66, 164);
   }
 
   h1, h2, current-date {

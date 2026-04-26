@@ -1,5 +1,11 @@
 <script setup>
+import { useRoute } from "vue-router";
+
 import SearchInput from "@/components/SearchInput.vue";
+import WeatherNav from "@/components/WeatherNav.vue";
+
+const route = useRoute();
+
 </script>
 
 <template>
@@ -22,12 +28,11 @@ import SearchInput from "@/components/SearchInput.vue";
   </nav>
 
   <!-- Main Container -->
-  <div id="app" class="container">
-    <router-view v-slot="{ Component }">
-      <transition name="fade" mode="out-in">
-        <component :is="Component" :key="$router.path"></component>
-      </transition>
-    </router-view>
+  <div id="app" class="container bg-black">
+    <!-- <router-view v-slot="{ Component }" class="main-view">
+      <WeatherNav v-if="route.meta.showWeatherNav" />
+      <component :is="Component" :key="$route.path"></component>
+    </router-view> -->
   </div>
 </template>
 

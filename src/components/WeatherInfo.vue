@@ -1,6 +1,5 @@
 <script setup>
 import { store } from '@/store/store';
-
 </script>
 
 <template>
