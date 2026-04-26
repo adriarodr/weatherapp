@@ -4,7 +4,16 @@ import axios from "axios";
 const fetchWeather = async (id) => {
   try {
     const response = await axios.get(
-      `https://api.weatherapi.com/v1/forecast.json?key=0692f7d532d943118e1150141261404&q=id:${id}&days=3&aqi=no&alerts=no`
+      "https://api.weatherapi.com/v1/forecast.json",
+      {
+        params: {
+          key: import.meta.env.VITE_WEATHER_API,
+          q: `id:${id}`,
+          days: 3,
+          aqi: "no",
+          alerts: "no",
+        }
+      }
     );
 
     return response.data;
@@ -17,7 +26,13 @@ const fetchWeather = async (id) => {
 const fetchAutoComplete = async (queryTerm) => {
   try {
     const response = await axios.get(
-      `https://api.weatherapi.com/v1/search.json?key=0692f7d532d943118e1150141261404&q=${queryTerm}`
+      "https://api.weatherapi.com/v1/search.json",
+      {
+        params: {
+          key: import.meta.env.VITE_WEATHER_API,
+          q: queryTerm
+        }
+      }
     );
 
     return response.data;

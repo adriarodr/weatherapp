@@ -1,6 +1,8 @@
 <script setup>
+import CurrentWeather from "@/components/CurrentWeather.vue";
 </script>
 
 <template>
-  <main>hi</main>
+  <!-- Current Weather Card -->
+  <CurrentWeather />
 </template>
