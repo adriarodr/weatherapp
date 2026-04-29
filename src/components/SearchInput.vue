@@ -1,14 +1,11 @@
 <script setup>
-import { reactive } from 'vue';
-import { useRouter } from 'vue-router';
+import { reactive } from "vue";
 
-import { fetchWeather, fetchAutoComplete } from '@/helper/weatherApi';
-import { store } from '@/store/store';
-
-const router = useRouter();
+import { fetchWeather, fetchAutoComplete } from "@/helper/weatherApi";
+import { setSelectedLocation, setWeather } from "@/store/store";
 
 const searchTerm = reactive({
-  query: '',
+  query: "",
   timeout: null,
   results: null,
 });
@@ -28,15 +25,14 @@ const handleSearch = () => {
 };
 
 // Get the data from the API and save it into the store
-const getWeather = async (id) => {
+const getWeather = async (place, id) => {
   const data = await fetchWeather(id);
-  store.setWeather(data);
+  setWeather(data);
+  setSelectedLocation(place.name);
 
   // Clear the searchTerm
   searchTerm.query = "";
   searchTerm.results = null;
-
-  router.push({ name: "today" });
 };
 </script>
 
@@ -50,7 +46,7 @@ const getWeather = async (id) => {
         <input
           type="text"
           placeholder="Search for a place"
-          class="rounded-r-lg p-2 border-0 outline-0 focus:ring-2 focus:ring-indigo-600 ring-inset w-full text-white"
+          class="rounded-r-lg p-2 border-0 outline-0 focus:ring-2 focus:border-green-300 ring-inset w-full text-white"
           v-model="searchTerm.query"
           @input = "handleSearch"
         />
@@ -58,13 +54,14 @@ const getWeather = async (id) => {
     </form>
 
     <!-- search suggestions -->
-    <div class="bg-white my-3 rounded-lg shadow-lg">
-      <div v-if="searchTerm.results !== null">
-        <div v-for="place in searchTerm.results" :key="place.id">
-          <button @click="getWeather(place.id)" class="px-3 my-2 hover:text-indigo-600 hover:font-bold w-full text-left">
-            {{ place.name }}, {{ place.region }}, {{ place.country }}
-          </button>
-        </div>
+    <div
+      v-if="searchTerm.results !== null"
+      class="bg-black/80 top-full absolute w-4/5 max-w-md shadow-lg rounded-lg p-2 m-x-auto">
+      <div v-for="place in searchTerm.results" :key="place.id">
+        <button @click="getWeather(place, place.id)" class="border-b w-full text-left p-1.5 my-2
+        hover:text-green-200 hover:font-bold focus:white focus:border-2">
+          {{ place.name }}, {{ place.region }}, {{ place.country }}
+        </button>
       </div>
     </div>
   </div>

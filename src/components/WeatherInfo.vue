@@ -1,28 +1,29 @@
 <script setup>
-import { store } from '@/store/store';
+import { current } from "@/store/store";
+import BaseCard from "./BaseCard.vue";
 </script>
 
 <template>
-  <div class="bg-black/70 text-white rounded-2xl p-5 w-5/5 flex flex-col justify-between
-  *:flex *:justify-between *:border-b *:border-b-white/50 *:pb-4">
+  <BaseCard class="w-5/5 flex flex-col justify-between text-xl
+  *:flex *:justify-between *:border-b *:border-b-white/50 *:py-2 md:*:mb-3">
     <div>
       <p>Humidity</p>
-      <p>{{ store.weatherData.current.humidity }}%</p>
+      <p>{{ current?.humidity }}%</p>
     </div>
 
     <div>
       <p>Wind</p>
-      <p>{{ store.weatherData.current.wind_kph }} kph {{ store.weatherData.current.dir }}</p>
+      <p>{{ current?.wind_kph }} kph {{ current?.dir }}</p>
     </div>
 
     <div>
       <p>Pressure</p>
-      <p>{{ store.weatherData.current.pressure_mb }} mb</p>
+      <p>{{ current?.pressure_mb }} mb</p>
     </div>
 
     <div>
       <p>Precipitation</p>
-      <p>{{ store.weatherData.current.precip_mm }} mm</p>
+      <p>{{ current?.precip_mm }} mm</p>
     </div>
-  </div>
+  </BaseCard>
 </template>
