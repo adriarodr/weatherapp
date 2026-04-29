@@ -1,0 +1,1 @@
+import{g as e,l as t,t as n,v as r}from"./index-z9KFlLbL.js";var i={},a={class:`bg-black/70 text-white rounded-2xl p-5 m-auto backdrop-blur-3xl shadow-xl border border-white/60`};function o(n,i){return e(),t(`div`,a,[r(n.$slots,`default`)])}var s=n(i,[[`render`,o]]);export{s as t};
