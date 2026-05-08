@@ -2,7 +2,9 @@
   <nav id="nav">
     <router-link class="nav-link" :to="{ name: 'today' }">Now</router-link>
     <router-link class="nav-link" :to="{ name: 'hourly' }">Hourly</router-link>
-    <router-link class="nav-link" :to="{ name: 'forecast' }">3 Days</router-link>
+    <router-link class="nav-link" :to="{ name: 'forecast' }"
+      >3 Days</router-link
+    >
   </nav>
 </template>
 

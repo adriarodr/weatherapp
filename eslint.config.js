@@ -1,9 +1,9 @@
 import { defineConfig, globalIgnores } from 'eslint/config';
 import globals from 'globals';
-import js from '@eslint/js';
 import pluginVue from 'eslint-plugin-vue';
-import pluginOxlint from 'eslint-plugin-oxlint';
+import js from '@eslint/js';
 import skipFormatting from 'eslint-config-prettier/flat';
+import vueParser from 'vue-eslint-parser';
 
 export default defineConfig([
   {
@@ -19,7 +19,17 @@ export default defineConfig([
     },
   },
   js.configs.recommended,
-  ...pluginVue.configs['flat/recommended'],
-  ...pluginOxlint.buildFromOxlintConfigFile('.oxlintrc.json'),
+  ...pluginVue.configs['flat/strongly-recommended-error'],
+  {
+    files: ['*.vue', '**/*.vue'],
+    rules: {
+      'vue/component-api-style': ['error',
+        ['script-setup', 'composition'],
+      ],
+    },
+    languageOptions: {
+      parser: vueParser,
+    }
+  },
   skipFormatting,
 ]);

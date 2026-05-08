@@ -2,8 +2,8 @@
 import { onMounted, computed, ref } from "vue";
 
 import { store, setWeather, current,  } from "@/store/store";
-import { fetchWeather } from "@/helper/weatherApi";
-import { getBackgroundImage } from "@/helper/backgroundImage";
+import { fetchWeather } from "@/helpers/weatherApi";
+import { getBackgroundImage } from "@/helpers/backgroundImage";
 
 import TheHeader from "@/components/TheHeader.vue";
 import TheSidebar from "@/components/TheSidebar.vue";

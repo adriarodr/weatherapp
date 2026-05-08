@@ -7,9 +7,7 @@
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview",
-    "lint": "run-s lint:*",
-    "lint:oxlint": "oxlint . --fix",
-    "lint:eslint": "eslint . --fix --cache",
+    "lint": "eslint . --fix",
     "format": "prettier --write --experimental-cli src/",
     "deploy": "sh deploy.sh"
   },
@@ -17,6 +15,7 @@
     "@tailwindcss/vite": "^4.2.4",
     "axios": "^1.15.2",
     "chart.js": "^4.5.1",
+    "pinia": "^3.0.4",
     "tailwindcss": "^4.2.4",
     "vue": "^3.5.32",
     "vue-chartjs": "^5.3.3",
@@ -25,17 +24,18 @@
   "devDependencies": {
     "@eslint/js": "^10.0.1",
     "@vitejs/plugin-vue": "^6.0.6",
-    "eslint": "^10.2.1",
+    "eslint": "^10.3.0",
     "eslint-config-prettier": "^10.1.8",
-    "eslint-plugin-oxlint": "~1.60.0",
     "eslint-plugin-vue": "~10.8.0",
     "globals": "^17.5.0",
     "npm-run-all2": "^8.0.4",
-    "oxlint": "~1.60.0",
     "prettier": "3.8.3",
     "vite": "^8.0.8",
     "vite-plugin-eslint": "^1.8.1",
-    "vite-plugin-vue-devtools": "^8.1.1"
+    "vite-plugin-vue-devtools": "^8.1.1",
+    "vue-axe": "^3.1.2",
+    "vue-dev-tools-accessibility": "^0.5.3",
+    "vue-eslint-parser": "^10.4.0"
   },
   "engines": {
     "node": "^20.19.0 || >=22.12.0"

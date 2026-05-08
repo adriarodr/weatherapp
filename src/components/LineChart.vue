@@ -1,7 +1,7 @@
 <script setup>
-import { ref, computed } from "vue";
+import { computed } from 'vue';
 
-import { Line } from "vue-chartjs";
+import { Line } from 'vue-chartjs';
 import {
   Chart as ChartJS,
   Title,
@@ -10,32 +10,40 @@ import {
   LinearScale,
   CategoryScale,
   PointElement,
-  LineElement
-} from "chart.js";
+  LineElement,
+} from 'chart.js';
 
-import { todayHourly } from "@/store/store";
+import { todayHourly } from '@/store/store';
 
-ChartJS.register(Title, Tooltip, Legend, LinearScale, CategoryScale, PointElement, LineElement)
-
-// Get the hourly temperatures
-const times = computed(() =>
-  todayHourly.value?.map(i => i.time.split(" ")[1]) ?? []
+ChartJS.register(
+  Title,
+  Tooltip,
+  Legend,
+  LinearScale,
+  CategoryScale,
+  PointElement,
+  LineElement,
 );
 
 // Get the hourly temperatures
-const hourlyTemps = computed(() =>
-  todayHourly.value?.map(i => i.temp_c) ?? []
+const times = computed(
+  () => todayHourly.value?.map((i) => i.time.split(' ')[1]) ?? [],
+);
+
+// Get the hourly temperatures
+const hourlyTemps = computed(
+  () => todayHourly.value?.map((i) => i.temp_c) ?? [],
 );
 
 const chartData = computed(() => ({
   labels: times.value,
   datasets: [
     {
-      label: "Hourly Temperatures",
+      label: 'Hourly Temperatures',
       data: hourlyTemps.value,
-      borderColor: "#38bdf8",
-      pointBackgroundColor: "#ffffff",
-      pointBorderColor: "#38bdf8",
+      borderColor: '#38bdf8',
+      pointBackgroundColor: '#ffffff',
+      pointBorderColor: '#38bdf8',
       pointRadius: 5,
       pointHoverRadius: 7,
       borderWidth: 3,
@@ -50,9 +58,9 @@ const chartOptions = computed(() => ({
   plugins: {
     font: {
       size: 22,
-      weight: "600",
-    }
-  }
+      weight: '600',
+    },
+  },
 }));
 </script>
 
