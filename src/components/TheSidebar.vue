@@ -1,6 +1,6 @@
 <script setup>
 import { useRouter } from 'vue-router';
-import { fetchWeather } from '@/helpers/weatherApi';
+import { fetchWeather } from '@/services/weather';
 
 import { store, setSelectedLocation, setWeather } from '@/store/store';
 

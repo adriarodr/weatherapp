@@ -1,24 +1,26 @@
 <script setup>
-import { onMounted, computed, ref } from "vue";
+import { onMounted, computed, ref } from 'vue';
 
-import { store, setWeather, current,  } from "@/store/store";
-import { fetchWeather } from "@/helpers/weatherApi";
-import { getBackgroundImage } from "@/helpers/backgroundImage";
+import { store, setWeather, current } from '@/store/store';
+import { fetchWeather } from '@/services/weather';
+import { getBackgroundImage } from '@/services/backgroundImage';
 
-import TheHeader from "@/components/TheHeader.vue";
-import TheSidebar from "@/components/TheSidebar.vue";
-import WeatherHeader from "@/components/WeatherHeader.vue";
+import TheHeader from '@/components/TheHeader.vue';
+import TheSidebar from '@/components/TheSidebar.vue';
+import WeatherHeader from '@/components/WeatherHeader.vue';
 
 // Find the image path for the current condition
 const imagePath = computed(() => {
-  return (current.value?.condition?.code) ? getBackgroundImage(current.value?.condition?.code) : {}
+  return current.value?.condition?.code
+    ? getBackgroundImage(current.value?.condition?.code)
+    : {};
 });
 
 // Opens and close the Sidebar
 const isSidebarOpen = ref(false);
 const toggleSidebar = () => {
-  isSidebarOpen.value = !(isSidebarOpen.value);
-}
+  isSidebarOpen.value = !isSidebarOpen.value;
+};
 
 onMounted(async () => {
   const data = await fetchWeather(store.selectedLocation);
@@ -31,7 +33,6 @@ onMounted(async () => {
     class="bg-cover bg-center mb-10"
     :style="{ backgroundImage: `url(${imagePath})` }"
   >
-
     <div class="min-h-screen bg-black/70">
       <!-- The Header / Search Bar -->
       <TheHeader @toggle-sidebar="toggleSidebar" />
@@ -42,7 +43,7 @@ onMounted(async () => {
 
         <!-- Main Container -->
         <main id="app" class="md:w-4/5 m-7 md:my-14 md:m-auto">
-          <router-view v-slot="{ Component }" >
+          <router-view v-slot="{ Component }">
             <WeatherHeader />
             <component :is="Component" :key="$route.path"></component>
           </router-view>

@@ -1,7 +1,7 @@
 <script setup>
 import { reactive } from 'vue';
 
-import { fetchWeather, fetchAutoComplete } from '@/helpers/weatherApi';
+import { fetchWeather, fetchLocations } from '@/services/weather';
 import { setSelectedLocation, setWeather } from '@/store/store';
 
 const searchTerm = reactive({
@@ -15,7 +15,7 @@ const handleSearch = () => {
   clearTimeout(searchTerm.timeout);
   searchTerm.timeout = setTimeout(async () => {
     if (searchTerm.query != '') {
-      const data = await fetchAutoComplete(searchTerm.query);
+      const data = await fetchLocations(searchTerm.query);
 
       searchTerm.results = data;
     } else {

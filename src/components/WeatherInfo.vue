@@ -1,6 +1,6 @@
 <script setup>
 import { current } from '@/store/store';
-import BaseCard from './BaseCard.vue';
+import BaseCard from '@/BaseCard.vue';
 </script>
 
 <template>
