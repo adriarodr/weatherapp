@@ -40,10 +40,10 @@ __screenshots__/
 # Vite
 *.timestamp-*-*.mjs
 
-# Local environment files
+# dotenv environment variable files
 .env
-.env.local
-.env.*.local
+.env.*
+!.env.example
 
 # Other
 notes/
