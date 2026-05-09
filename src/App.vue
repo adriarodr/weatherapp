@@ -1,54 +1,25 @@
 <script setup>
-import { onMounted, computed, ref } from 'vue';
+import { useWeatherStore } from '@/stores/weatherStore';
+// import { useFavoritesStore } from '@/stores/favoritesStore';
 
-import { store, setWeather, current } from '@/store/store';
-import { fetchWeather } from '@/services/weather';
-import { getBackgroundImage } from '@/services/backgroundImage';
+const weatherStore = useWeatherStore();
+weatherStore.setForecast('london');
 
-import TheHeader from '@/components/TheHeader.vue';
-import TheSidebar from '@/components/TheSidebar.vue';
-import WeatherHeader from '@/components/WeatherHeader.vue';
-
-// Find the image path for the current condition
-const imagePath = computed(() => {
-  return current.value?.condition?.code
-    ? getBackgroundImage(current.value?.condition?.code)
-    : {};
-});
-
-// Opens and close the Sidebar
-const isSidebarOpen = ref(false);
-const toggleSidebar = () => {
-  isSidebarOpen.value = !isSidebarOpen.value;
-};
-
-onMounted(async () => {
-  const data = await fetchWeather(store.selectedLocation);
-
-  setWeather(data);
-});
+// const favoritesStore = useFavoritesStore();
 </script>
+
 <template>
-  <div
-    class="bg-cover bg-center mb-10"
-    :style="{ backgroundImage: `url(${imagePath})` }"
-  >
-    <div class="min-h-screen bg-black/70">
-      <!-- The Header / Search Bar -->
-      <TheHeader @toggle-sidebar="toggleSidebar" />
+  <div>
+    <!-- Main Container -->
+    <main id="app" class="md:w-4/5 m-7 md:my-14 md:m-auto">
+      <h1>Testing...</h1>
+      <div v-if="store.isLoading">Fetching the latest weather...</div>
 
-      <div class="">
-        <!-- The Sidebar for the saved locations -->
-        <TheSidebar :open="isSidebarOpen" />
+      <div v-else-if="store.error">Uh oh! {{ store.error }}</div>
 
-        <!-- Main Container -->
-        <main id="app" class="md:w-4/5 m-7 md:my-14 md:m-auto">
-          <router-view v-slot="{ Component }">
-            <WeatherHeader />
-            <component :is="Component" :key="$route.path"></component>
-          </router-view>
-        </main>
+      <div v-else-if="store.location">
+        <h1>{{ store.location.name }}</h1>
       </div>
-    </div>
+    </main>
   </div>
 </template>

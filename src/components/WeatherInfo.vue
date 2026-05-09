@@ -1,5 +1,5 @@
 <script setup>
-import { current } from '@/store/store';
+import { current } from '@/stores/store';
 import BaseCard from '@/BaseCard.vue';
 </script>
 
