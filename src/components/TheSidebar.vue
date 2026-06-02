@@ -1,8 +1,8 @@
 <script setup>
 import { useRouter } from 'vue-router';
-import { fetchWeather } from '@/services/weather';
+import { fetchWeather } from '@/services/weatherService';
 
-import { store, setSelectedLocation, setWeather } from '@/store/store';
+import { store, setSelectedLocation, setWeather } from '@/stores/store';
 
 const router = useRouter();
 

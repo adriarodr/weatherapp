@@ -20,7 +20,7 @@ ChartJS.register(
   LinearScale,
 );
 
-import { todayHourly } from '@/store/store';
+import { todayHourly } from '@/stores/store';
 
 // Get the hourly temperatures
 const times = computed(

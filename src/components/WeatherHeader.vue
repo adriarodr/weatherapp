@@ -5,7 +5,7 @@ import {
   addLocation,
   removeLocation,
   store,
-} from '@/store/store';
+} from '@/stores/store';
 import WeatherNav from '@/components/WeatherNav.vue';
 
 function toggleFavorite() {

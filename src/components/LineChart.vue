@@ -13,7 +13,7 @@ import {
   LineElement,
 } from 'chart.js';
 
-import { todayHourly } from '@/store/store';
+import { todayHourly } from '@/stores/store';
 
 ChartJS.register(
   Title,

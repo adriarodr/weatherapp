@@ -23,13 +23,11 @@ export default defineConfig([
   {
     files: ['*.vue', '**/*.vue'],
     rules: {
-      'vue/component-api-style': ['error',
-        ['script-setup', 'composition'],
-      ],
+      'vue/component-api-style': ['error', ['script-setup', 'composition']],
     },
     languageOptions: {
       parser: vueParser,
-    }
+    },
   },
   skipFormatting,
 ]);

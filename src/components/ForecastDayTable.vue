@@ -1,5 +1,5 @@
 <script setup>
-import { forecast } from '@/store/store';
+import { forecast } from '@/stores/store';
 </script>
 
 <template>

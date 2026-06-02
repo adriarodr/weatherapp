@@ -1,5 +1,5 @@
 <script setup>
-import { current, forecast } from '@/store/store';
+import { current, forecast } from '@/stores/store';
 import WeatherInfo from '@/components/WeatherInfo.vue';
 import BaseCard from '@/BaseCard.vue';
 </script>

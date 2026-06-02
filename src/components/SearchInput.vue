@@ -1,8 +1,8 @@
 <script setup>
 import { reactive } from 'vue';
 
-import { fetchWeather, fetchLocations } from '@/services/weather';
-import { setSelectedLocation, setWeather } from '@/store/store';
+import { fetchWeather, fetchLocations } from '@/services/weatherService';
+import { setSelectedLocation, setWeather } from '@/stores/store';
 
 const searchTerm = reactive({
   query: '',
